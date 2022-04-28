@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.demo {
+			padding: 20px;
+			border-bottom: 1px solid #ebebeb;
+		}
+		h1 {
+			position: relative;
+			display: flex;
+			margin-bottom: 20px;
+			font-size: 30px;
+		}
+		h1::before {
+			position: absolute;
+			left: -5px;
+			bottom: 5px;
+			height: 30px;
+			width: 30px;
+			border-radius: 50%;
+			background: linear-gradient(rgb(36, 159, 241, .6), rgba(36, 159, 241,.05));
+			z-index: -1;
+			content: '';
+		}
+		.div0 {
+			padding: 20px;
+			background: #f0f0f0;
+			line-height: 2em;
+			font-size:  30px;
+		}
+		.div0 span {
+			background: #249ff1;
+		}
+		.div0 em {
+			background: #ff5b01;
+		}
+		.div {
+			background: #f0f0f0;
+			border:  1px solid green;
+			margin: 30px;
+		}
+		.div1 {
+			font-size: 30px;
+			line-height: 0;
+		}
+		.div2 {
+			font-size: 0;
+			line-height: 100px;
+		}
+		.div3{
+			font-size: 30px;
+			line-height: 100px;
+		}
+		.parent {
+			background: #f0f0f0;
+			font-size: 16px;
+			line-height: 150%;
+			padding:  20px;
+			margin: 20px;
+		}
+		.parent1 {line-height: 150%;}
+		.parent2 {line-height: 1.5;}
+		.parent3 {line-height: 1.5em;}
+		.child {
+			border:  1px solid #249ff1;
+			margin: 20px 0;
+			font-size: 32px;
+		}
+
+		.v-item {
+			width: 300px;
+			background: #f0f0f0;
+			border: 1px solid #e0e0e0;
+			display: inline-block;
+			margin-left: 10px;
+			margin-bottom: 10px;
+			vertical-align: top;
+			line-height: 100px;/*注释此行可恢复默认的对齐样式*/
+		}
+		.v-item img {
+			width: 80px;
+		}
+		.v-item span {
+			background: #F00;
+		}
+		.top{
+			vertical-align: top;
+		}
+		.middle {
+			vertical-align: middle;
+		}
+		.bottom {
+			vertical-align: bottom;
+		}
+		.text-top {
+			vertical-align: text-top;
+		}
+		.text-bottom {
+			vertical-align: text-bottom;
+		}
+		.super {
+			vertical-align: super;
+		}
+		.sub {
+			vertical-align: sub;
+		}
+		.l10 {
+			vertical-align: 10px;
+		}
+		.l-10 {
+			vertical-align: -10px;
+		}
+		.b10 {
+			vertical-align: 10%;
+		}
+		.b-10 {
+			vertical-align: -10%;
+		}
+
+		.vvsl .wrap {
+			margin-bottom: 10px;
+			background: #249ff1;
+		}
+		.vvsl span {
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			border: 1px solid #f00;
+		}
+		.vvsl  img {
+			width: 100px;
+		}
+		.vvsl .middle {
+			vertical-align: middle;
+		}
+
+
+		li{
+			list-style-type: none;
+			border:  1px solid red;
+			display: inline-block;
+			width: 28%;
+			text-align: center;
+		}
+		.fix {
+			display: inline-block;
+			width: 28%;
+			text-align: center;
+		}
+		ul {
+			width:  720px;
+			border:  1px solid #a7a7a7;
+			text-align: justify;
+			margin: 20px auto;
+		}
+		li img {
+			width: 95%;
+		}
+	</style>
+</head>
+<body>
+	<!-- 内联盒子 -->
+	<div class="demo">
+		<h1>内联盒子</h1>
+		<div class="div0">
+			这里是一个div，里面包含了独立的文字，<span>span标签</span><em>em标签</em>，以及其他的一些文字。
+		</div>
+	</div>
+
+	<!-- 行高与内联高度 -->
+	<div class="demo">
+		<h1>行高与内联高度</h1>
+		<div class="div div1">我是一行文字大小为30px,但是line-height为0的文字</div>
+		<div class="div div2">我是一行文字大小为0,但是line-height为100px的文字</div>
+		<div class="div div3">我是一行文字大小为30px，line-height都为100px的文字</div>
+	</div>
+
+	<!-- 行高与文本间距 -->
+	<div class="demo">
+		<h1>行高与文本间距</h1>
+		<div class="parent parent1">
+			我是父级元素，我的font-size为16px，line-height为150%，即24px。
+			<div class="child child1">我是子级元素，我的font-size为32px，没有设置line-height，会继承line-height为150%，此时继承的是24px</div>
+		</div>
+		<div class="parent parent2">
+			我是父级元素，我的font-size为16px，line-height为1.5，即24px
+			<div class="child child2">我是子级元素，我的font-size为32px，，没有设置line-height，继承line-height为1.5，会按照我自身的字体大小重新计算，即32*1.5=48px</div>
+		</div>
+		<div class="parent parent3">
+			我是父级元素，我的font-size为16px，line-height为1.5em，即24px
+			<div class="child child3">我是子级元素，我的font-size为32px，，没有设置line-height，继承line-height为1.5em，此时继承的是24px</div>
+		</div>
+	</div>
+
+	<!-- vertical-align值对比 -->
+	<h1>vertical-align值对比</h1>
+	<div class="demo">
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg">
+			<span>我是默认baseline对齐</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="top">
+			<span>我的对齐方式是top</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="text-top">
+			<span>我的对齐方式text-top</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="middle">
+			<span>我的对齐方式是middle</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="bottom">
+			<span>我的对齐方式bottom</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="text-bottom">
+			<span>我的对齐方式text-bottom</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="l10">
+			<span>我的对齐方式10px</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="l-10">
+			<span>我的对齐方式-10px</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="b10">
+			<span>我对齐方式10%,即5px;</span>
+		</div>
+		<div class="v-item">
+			<img src="./images/zhuyin.jpg" class="b-10">
+			<span>我对齐方式-10%,即-5px;</span>
+		</div>
+		<div class="v-item">
+			<span>这里是普通文字</span>
+			<span class="super">super</span>
+		</div>
+		<div class="v-item">
+			<span>这里是普通文字</span>
+			<span class="sub">sub</span>
+		</div>
+	</div>
+
+		<!-- vertical-align与line-height共同作用 -->
+		<h1>vertical-align与line-height共同作用</h1>
+		<div class="demo vvsl">
+			<!-- ========================例子1==================== -->
+			<div class="wrap">
+				<img src="./images/zhuyin.jpg" />
+			</div>
+			<!-- 调大行高 -->
+			<!-- <div class="wrap" style="line-height: 50px;">
+				<img src="./images/zhuyin.jpg" />
+			</div> -->
+			<!-- 插入字符 -->
+			<!-- <div class="wrap" style="line-height: 50px;">
+				<img src="./images/zhuyin.jpg" />XXX
+			</div> -->
+			<!-- 给文字加入背景 -->
+			<!-- <div class="wrap" style="line-height: 50px;">
+				<img src="./images/zhuyin.jpg" />
+				<span style="display: inline-block;background: red">XXX</span>	 
+			</div> -->
+			<!-- 解决间隙 -->
+			<!-- <div class="wrap">
+				<img src="./images/zhuyin.jpg" style="vertical-align: bottom;" />
+			</div> -->
+
+	<!-- ========================例子2==================== -->
+			<div class="wrap">
+				<span></span>
+				<span>我有内容</span>
+			</div>
+			<!-- 解决 -->
+			<div class="wrap">
+				<span style="vertical-align: middle;"></span>
+				<span style="vertical-align: middle;">我有内容</span>
+			</div>
+
+	<!-- ========================例子3==================== -->
+			<div class="wrap" style="height:200px;">
+				<img src="./images/zhuyin.jpg" class="middle" />
+			</div>
+		</div>
+
+		<!-- 两端对齐的列表 -->
+		<div class="demo">
+			<ul style="line-height:0">
+				<li><img src="./images/zhuyin.jpg"></li>
+				<li><img src="./images/zhuyin.jpg"></li>
+				<li><img src="./images/zhuyin.jpg"></li>
+				<li><img src="./images/zhuyin.jpg"></li>
+				<li><img src="./images/zhuyin.jpg"></li>
+				<li><img src="./images/zhuyin.jpg"></li>
+				<li><img src="./images/zhuyin.jpg"></li>
+				<!-- 初始状态 -->
+				<!-- <span class="fix"></span>
+				<span class="fix"></span>
+				<span class="fix"></span> -->
+				<!-- 加上边框 -->
+				<span class="fix" style="border: 1px solid green;"></span>
+				<span class="fix" style="border: 1px solid green;"></span>
+				<!-- 增加裸露的文本节点 -->
+				<!-- <span class="fix" style="border: 1px solid green;"></span>XXX -->
+				<!-- 把文本挪进去 -->
+				<span class="fix" style="border: 1px solid green;">XXX</span>
+			</ul>
+			<!-- <style>
+				.area  { font-size: 100px }
+				.a { font-family: Helvetica;border: 1px solid; }
+				.b { font-family: Gruppo ;border: 1px solid;   }
+				.c { font-family: Catamaran ;border: 1px solid;}
+				.em {font-size: 12px;}
+			</style>
+
+			<p class="area">
+				<span class="a">Ba <i class="em" style="vertical-align: text-top;">x</i></span>
+				<span class="b">Ba <i class="em" style="vertical-align: text-top;">x</i></span>
+				<span class="c">Ba <i class="em" style="vertical-align: text-top;">x</i></span>
+			</p> -->
+		</div>
+
+
+
+
+</body>
+</html>
